@@ -6,6 +6,9 @@ import MovieCard from "./MovieCard";
 const Movie = (props) => {
   const [movie, setMovie] = useState();
   const { id } = useParams();
+  const clickToAdd = () => {
+    props.addToSavedList(movie);
+  }
   useEffect(() => {
     // const id = 1;
     // change ^^^ that line and grab the id from the URL
@@ -52,7 +55,7 @@ const Movie = (props) => {
           </div>
         ))}
       </div> */}
-      <div className="save-button">Save</div>
+      <div className="save-button" onClick={clickToAdd}>Save</div>
     </div>
   );
 }

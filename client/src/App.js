@@ -7,7 +7,15 @@ import MovieList from './Movies/MovieList';
 const App = () => {
   const [savedList, setSavedList] = useState( [] );
   const addToSavedList = movie => {
-    setSavedList( [...savedList, movie] );
+      let newMovie = true;
+      savedList.forEach((oldMovie) => {
+        if (movie.id === oldMovie.id) {
+          newMovie = false;
+        }
+      })
+      if (newMovie) {
+        setSavedList( [...savedList, movie] );
+      }
   };
 
   return (
@@ -15,7 +23,7 @@ const App = () => {
       <SavedList list={savedList} />
       <Switch>
         <Route path="/movies/:id">
-          <Movie />
+          <Movie addToSavedList={addToSavedList}/>
         </Route>
         <Route path="/">
           <MovieList />
